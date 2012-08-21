@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Adding file size in bytes to Explorer.s Details View on Windows 2000 and XP - Wishful Coding</title>
+  <meta name="author" content="Leonardo">
+
+  
+  <meta name="description" content="Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the properties dialog box &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Wishful Coding" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4278948-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Wishful Coding</a></h1>
+  
+    <h2>Because clearly wishful thinking alone is not enough.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:wishfulcoding.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Adding File Size in Bytes to Explorer.s Details View on Windows 2000 and XP</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T01:19:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the <a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/FileProperties.png">properties dialog box</a>. You would think the Details view is a great place for that, considering the remarkable selection of columns you can include. Seriously, there is a <em>Mood</em> column but no <em>Size in bytes</em> or equivalent?</p>
+
+<p>On Windows XP and previous versions, you could write a <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/cc144067(v=vs.85">shell extension</a>.aspx) that implemented the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147(v=vs.85">IColumnProvider</a>.aspx) interface and add custom columns as needed. <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-wcstatus.html#id663427">TortoiseSVN</a> used these kind of extensions, for example, to show the status of files under source control directly on Windows Explorer.</p>
+
+<p>On Windows Vista, however, Microsoft <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147(v=vs.85">decided to remove the IColumnProvider interface</a>.aspx):</p>
+
+<blockquote><p><strong>Note</strong>  Support for <strong>IColumnProvider</strong> has been removed as of Windows Vista. The Windows property system is used in its place. See <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ff728898(v=vs.85">Windows Property System</a>.aspx) for conceptual materials that explain the use of the new system.</p></blockquote>
+
+<p>My guess is that rogue extensions were causing a lot of performance/stability issues on Windows Explorer and Microsoft didn&#8217;t like being blamed for them (&#8220;Why is Explorer so slow? Stupid Microsoft Die Die Die!&#8221;), so they decided to retire the interface altogether. I haven&#8217;t got too far into the Windows property system but I suspect you cannot mimic the full functionality of custom columns on the details view for every type of file.</p>
+
+<p>Anyway, even if I came 11 years late to the party and it&#8217;s no longer relevant, I decided to take a shot at it and implemented a <a href="https://github.com/dredix/FileSizeXP">shell extension for showing the size of file in bytes</a>. No more <a href="http://blogs.msdn.com/b/oldnewthing/archive/2011/03/15/10140985.aspx">undesirable rounding up/down to kilobytes</a> for the benefit of ancient programs that have probably fallen into oblivion.</p>
+
+<p>When installed, the extension adds a new column called <strong>Size in Bytes</strong> which can be added to the explorer&#8217;s Details View:</p>
+
+<p><img src="//raw.github.com/dredix/FileSizeXP/master/doc/images/ColumnSelection.png" alt="Column Selection" /></p>
+
+<p>Select it, and you&#8217;ll get an extra column with the file size in glorious bytes:</p>
+
+<p><a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/Explorer.png"><img alt="Details View" style="width: 100%" src="//raw.github.com/dredix/FileSizeXP/master/doc/images/Explorer.png" /></a></p>
+
+<p>If you still use Windows 2000 or XP <s>don&#8217;t you think is time to move on?</s> and want to use the extension, follow these steps:</p>
+
+<ul>
+<li><p>Download the DLL: <a href="https://github.com/dredix/FileSizeXP/raw/master/bin/FileSizeXP.dll">FileSizeXP.dll</a>.</p></li>
+<li><p>Put it wherever you want. C:\Utils is as good a place as any.</p></li>
+<li><p>Register it by running the following command:<br/>
+  <code>regsvr32 C:\path\to\file\FileSizeXP.dll</code></p></li>
+<li><p>Restart the PC.</p></li>
+</ul>
+
+
+<p>Note, however, the following caveats:</p>
+
+<ul>
+<li><p>The extension does not, I repeat, DOES NOT work on Windows Vista and newer versions. For that you will need need an Explorer replacement, like <a href="http://zabkat.com/">Zabkat&#8217;s Xplorer<sup>2</sup></a>, or just give up on showing full size in bytes in Explorer.</p></li>
+<li><p>I haven&#8217;t actually tried the extension on Windows 2000.</p></li>
+<li><p>Sorting files by the new column seems to be broken at the moment. I&#8217;ll go back and fix it, hopefully before Windows XP goes out of support.</p></li>
+</ul>
+
+
+<p>If you decided to trust a random guy on the Internet and try this extension, please do let me know how it went.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leonardo</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T01:19:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/" data-via="archaetypo" data-counturl="http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding file size in bytes to Explorer.s Details View on Windows 2000 and XP</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/dredix">@dredix</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'dredix',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("archaetypo", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/archaetypo" class="twitter-follow-button" data-show-count="false">Follow @archaetypo</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Leonardo -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'dredix';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/';
+        var disqus_url = 'http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
