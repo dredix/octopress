@@ -20,11 +20,11 @@ Anyway, even if I came 11 years late to the party and it's no longer relevant, I
 
 When installed, the extension adds a new column called __Size in Bytes__ which can be added to the explorer's Details View:
 
-![Column Selection](//raw.github.com/dredix/FileSizeXP/master/doc/images/ColumnSelection.png)
+<a href="https://lh5.googleusercontent.com/-Eq_XZFBzVcg/UDQ8w4Z1gfI/AAAAAAAAAIw/XdMl1-_HoZQ/s800/ColumnSelection.png"><img alt="Column Selection" src="https://lh5.googleusercontent.com/-Eq_XZFBzVcg/UDQ8w4Z1gfI/AAAAAAAAAIw/XdMl1-_HoZQ/s800/ColumnSelection.png" /></a>
 
 Select it, and you'll get an extra column with the file size in glorious bytes:
 
-<a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/Explorer.png"><img alt="Details View" style="width: 100%" src="//raw.github.com/dredix/FileSizeXP/master/doc/images/Explorer.png" /></a>
+<a href="https://lh3.googleusercontent.com/-DgKb-qm1ByA/UDQ8wyqjbOI/AAAAAAAAAI4/NKNUQbOrAeg/s800/Explorer.png"><img alt="Details View" style="width: 100%" src="https://lh3.googleusercontent.com/-DgKb-qm1ByA/UDQ8wyqjbOI/AAAAAAAAAI4/NKNUQbOrAeg/s800/Explorer.png" /></a>
 
 If you still use Windows 2000 or XP <s>don't you think is time to move on?</s> and want to use the extension, follow these steps:
 

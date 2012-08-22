@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Wishful Coding</title>
+  <title>On Wishful Thinking - Wishful Coding</title>
   <meta name="author" content="Leonardo">
 
   
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://wishfulcoding.com/">
+  <link rel="canonical" href="http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -74,15 +74,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/08/22/on-wishful-thinking/">On Wishful Thinking</a></h1>
+      <h1 class="entry-title">On Wishful Thinking</h1>
     
     
       <p class="meta">
@@ -100,14 +97,14 @@
 
 <time datetime="2012-08-22T11:21:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
         
-         | <a href="/blog/2012/08/22/on-wishful-thinking/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p>I love <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen&#8217;s blog</a>, especially when he goes thermonuclear on his customers (or readers) for asking stupid questions or trying to go off topic or, you know, just plain trolling.</p>
+<div class="entry-content"><p>I love <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen&#8217;s blog</a>, especially when he goes thermonuclear on his customers (or readers) for asking stupid questions or trying to go off topic or, you know, just plain trolling.</p>
 
 <p>Something I find funny about the highly technical posts on his blog is that Mr Chen usually supplements his explanations with witty remarks like &#8220;the customer managed to screw it despite this being clearly documented here and here and there.&#8221; Well of course he is being polite, since it should surprise no one the fact that most people just do not care about documentation or doing things the right way in general.</p>
 
@@ -137,22 +134,16 @@
 
 <p>Nobody knows. And since we suck at predicting the future, maybe <a href="http://neo.jpl.nasa.gov/risk/">it doesn&#8217;t even matter</a>. We&#8217;ll see.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding File Size in Bytes to Explorer&#8217;s Details View on Windows 2000 and XP</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Leonardo</span></span>
+
+      
 
 
 
@@ -164,69 +155,38 @@
   
 
 
-<time datetime="2012-08-22T01:19:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/#disqus_thread">Comments</a>
-        
-      </p>
+<time datetime="2012-08-22T11:21:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the <a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/FileProperties.png">properties dialog box</a>. You would think the Details view is a great place for that, considering the remarkable selection of columns you can include. Seriously, there is a <em>Mood</em> column but no <em>Size in bytes</em> or equivalent?</p>
-
-<p>On Windows XP and previous versions, you could write a <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/cc144067.aspx">shell extension</a> that implemented the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147.aspx">IColumnProvider</a> interface and add custom columns as needed. <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-wcstatus.html#id663427">TortoiseSVN</a> used these kind of extensions, for example, to show the status of files under source control directly on Windows Explorer.</p>
-
-<p>On Windows Vista, however, Microsoft <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147.aspx">decided to remove the IColumnProvider interface</a>:</p>
-
-<blockquote><p><strong>Note</strong>  Support for <strong>IColumnProvider</strong> has been removed as of Windows Vista. The Windows property system is used in its place. See <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ff728898.aspx">Windows Property System</a> for conceptual materials that explain the use of the new system.</p></blockquote>
-
-<p>My guess is that rogue extensions were causing a lot of performance/stability issues on Windows Explorer and Microsoft didn&#8217;t like being blamed for them (&#8220;Why is Explorer so slow? Stupid Microsoft Die Die Die!&#8221;), so they decided to retire the interface altogether. I haven&#8217;t got too far into the Windows property system but I suspect you cannot mimic the full functionality of custom columns on the details view for every type of file.</p>
-
-<p>Anyway, even if I came 11 years late to the party and it&#8217;s no longer relevant, I decided to take a shot at it and implemented a <a href="https://github.com/dredix/FileSizeXP">shell extension for showing the size of file in bytes</a>. No more <a href="http://blogs.msdn.com/b/oldnewthing/archive/2011/03/15/10140985.aspx">undesirable rounding up/down to kilobytes</a> for the benefit of ancient programs that have probably fallen into oblivion.</p>
-
-<p>When installed, the extension adds a new column called <strong>Size in Bytes</strong> which can be added to the explorer&#8217;s Details View:</p>
-
-<p><a href="https://lh5.googleusercontent.com/-Eq_XZFBzVcg/UDQ8w4Z1gfI/AAAAAAAAAIw/XdMl1-_HoZQ/s800/ColumnSelection.png"><img alt="Column Selection" src="https://lh5.googleusercontent.com/-Eq_XZFBzVcg/UDQ8w4Z1gfI/AAAAAAAAAIw/XdMl1-_HoZQ/s800/ColumnSelection.png" /></a></p>
-
-<p>Select it, and you&#8217;ll get an extra column with the file size in glorious bytes:</p>
-
-<p><a href="https://lh3.googleusercontent.com/-DgKb-qm1ByA/UDQ8wyqjbOI/AAAAAAAAAI4/NKNUQbOrAeg/s800/Explorer.png"><img alt="Details View" style="width: 100%" src="https://lh3.googleusercontent.com/-DgKb-qm1ByA/UDQ8wyqjbOI/AAAAAAAAAI4/NKNUQbOrAeg/s800/Explorer.png" /></a></p>
-
-<p>If you still use Windows 2000 or XP <s>don&#8217;t you think is time to move on?</s> and want to use the extension, follow these steps:</p>
-
-<ul>
-<li><p>Download the DLL: <a href="https://github.com/dredix/FileSizeXP/raw/master/bin/FileSizeXP.dll">FileSizeXP.dll</a>.</p></li>
-<li><p>Put it wherever you want. C:\Utils is as good a place as any.</p></li>
-<li><p>Register it by running the following command:<br/>
-  <code>regsvr32 C:\path\to\file\FileSizeXP.dll</code></p></li>
-<li><p>Restart the PC.</p></li>
-</ul>
-
-
-<p>Note, however, the following caveats:</p>
-
-<ul>
-<li><p>The extension does not, I repeat, DOES NOT work on Windows Vista and newer versions. For that you will need need an Explorer replacement, like <a href="http://zabkat.com/">Zabkat&#8217;s Xplorer<sup>2</sup></a>, or just give up on showing full size in bytes in Explorer.</p></li>
-<li><p>I haven&#8217;t actually tried the extension on Windows 2000.</p></li>
-<li><p>Sorting files by the new column seems to be broken at the moment. I&#8217;ll go back and fix it, hopefully before Windows XP goes out of support.</p></li>
-</ul>
-
-
-<p>If you decided to trust a random guy on the Internet and try this extension, please do let me know how it went.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/" data-via="archaetypo" data-counturl="http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/" title="Previous Post: Adding file size in bytes to Explorer's Details View on Windows 2000 and XP">&laquo; Adding file size in bytes to Explorer's Details View on Windows 2000 and XP</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
+  </section>
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -238,7 +198,7 @@
       </li>
     
       <li class="post">
-        <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding file size in bytes to Explorer&#8217;s Details View on Windows 2000 and XP</a>
+        <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding file size in bytes to Explorer's Details View on Windows 2000 and XP</a>
       </li>
     
   </ul>
@@ -247,7 +207,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/dredix">@dredix</a> on GitHub
@@ -277,7 +237,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -297,6 +257,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -311,7 +272,10 @@
       var disqus_shortname = 'wishfulcoding';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/';
+        var disqus_url = 'http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

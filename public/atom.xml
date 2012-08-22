@@ -4,7 +4,7 @@
   <title><![CDATA[Wishful Coding]]></title>
   <link href="http://wishfulcoding.com/atom.xml" rel="self"/>
   <link href="http://wishfulcoding.com/"/>
-  <updated>2012-08-22T10:02:53+10:00</updated>
+  <updated>2012-08-22T12:14:11+10:00</updated>
   <id>http://wishfulcoding.com/</id>
   <author>
     <name><![CDATA[Leonardo]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[On Wishful Thinking]]></title>
+    <link href="http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/"/>
+    <updated>2012-08-22T11:21:00+10:00</updated>
+    <id>http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking</id>
+    <content type="html"><![CDATA[<p>I love <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen&#8217;s blog</a>, especially when he goes thermonuclear on his customers (or readers) for asking stupid questions or trying to go off topic or, you know, just plain trolling.</p>
+
+<p>Something I find funny about the highly technical posts on his blog is that Mr Chen usually supplements his explanations with witty remarks like &#8220;the customer managed to screw it despite this being clearly documented here and here and there.&#8221; Well of course he is being polite, since it should surprise no one the fact that most people just do not care about documentation or doing things the right way in general.</p>
+
+<p>You see, a lot of companies employing programmers (I dare say most of them) are usually not that interested in the long lasting quality of internal software products. If, as a developer, you know your application will have to be ready in less than 2 weeks, will be used only by a handful of people with pretty much identical skill set and low self-esteem, you won&#8217;t lose that much time in making sure your solution is absolutely the best anyone can come up with. You won&#8217;t care if it&#8217;s efficient, with great performance and minimum memory consumption, or if it has a usable user interface.</p>
+
+<p>When a programmer finds an error the usual way to solve it goes like this:</p>
+
+<p><a href="http://www.flickr.com/photos/wishfulcoding/6315168390/"><img src="http://farm7.static.flickr.com/6032/6315168390_be3136771f.jpg" width="100%" alt="Wishful Thinking"></a></p>
+
+<p>So, this marvellous reasoning means that most of the time we won&#8217;t slow down to understand what&#8217;s going on, what went wrong and how to solve it nicely. It means that by sheer luck sometimes we&#8217;ll come up with a working solution, and most of the time we&#8217;ll create a time bomb. The code will work ok on our machines under very specific circumstances, and then it will fail spectacularly on a live environment or down the road when some of the specs/settings change in an unexpected way. And the whole cycle will start again. Most of the time it won&#8217;t even get to this point, because the application will be decommissioned, or because we will have moved on to a different project/department/company.</p>
+
+<p>I think of a particular aspect of this reasoning, the &#8220;Let&#8217;s try the first thing that comes to my mind and see if it works&#8221;, as a special case of wishful thinking I like to call <em>Wishful Coding</em>. It basically involves trying to adapt programming tools and languages to our mental model, because &#8220;That&#8217;s how I imagine this class or function should behave so let&#8217;s just assume they will and hope for the best.&#8221;</p>
+
+<p>Wishful coding is the reason why <a href="http://thedailywtf.com/">The Daily WTF</a> continues to thrive and why there&#8217;s a whole subculture of mocking catastrophically funny pieces of code. It&#8217;s especially bad on languages with unsafe constructs (like C or C++) which don&#8217;t offer enough safety nets by default, such as garbage collection or boundary checks. If you can cause any harm to yourself or society, then for sure you will.</p>
+
+<p>So, is there anything we can do to improve this bleak landscape? Of course there is. A real life version of the <a href="http://en.wikipedia.org/wiki/Technology_in_The_Hitchhiker%27s_Guide_to_the_Galaxy#Joo_Janta_200_Super-Chromatic_Peril_Sensitive_Sunglasses">Joo Janta 200 Super-Chromatic Peril Sensitive Sunglasses</a> <a href="http://en.wikipedia.org/wiki/Project_Glass">may or may not be in the works</a>, so I would keep an eye on those.</p>
+
+<p>We can also try scaring people into doing things right, despite pressure from management. Somebody said <em>&#8220;Always write code as if the person who will be maintaining it is a psychotic serial killer who knows where you live.&#8221;</em> So we could try, say, hiring trainee programmers with actual criminal records and give them the rest of the staff&#8217;s home addresses.</p>
+
+<p>A different approach which seems to be quite popular these days is making difficult for people to shoot themselves (and others) in the feet. Joel Spolsky says that <a href="http://www.joelonsoftware.com/design/1stDraft/03.html"><em>Something is usable if it behaves exactly as expected.</em></a>. That also seems to apply to our development tools. Emerging frameworks and languages appear to focus in allowing programmers to <a href="http://www.hanselman.com/blog/ProgrammerIntentOrWhatYoureNotGettingAboutRubyAndWhyItsTheTits.aspx">express intent</a> instead of complying with the strict rules of machine language. They favour convention over configuration, readability over conciseness, security over performance. Joe Coder shouldn&#8217;t be spending any time in deciding what the best technique is for concatenating immutable strings in a loop, just let the platform take care of those details.</p>
+
+<p>Since we already decided to follow this path then why not going all the way down? Why not deprecate technologies that could potentially allow anyone to cause any kind of harm? Sorry, C and C++ and Objective C: You have to go. CGI? OpenGL? Don&#8217;t even get me started. Root access? HA! We should keep dumbing down our tools, so let&#8217;s make it hard for new programmers to overflow a stack, to divide by zero, to cause a deadlock. Let&#8217;s ban kernel access, unsafe pointers and unmanaged memory. Everyone embrace sandboxed languages: Let&#8217;s write a H.264 decoder in JavaScript!!! (<a href="http://arstechnica.com/open-source/news/2011/10/native-javascript-h264-decoder-offers-compelling-demo-of-js-performance.ars">Oh, wait&#8230;</a>)</p>
+
+<p>Seriously now, it&#8217;s obvious that current trends on corporate IT will surely continue for decades and most legacy systems will actually outlive us. But at least there are now more chances than ever for the next generation of wishful coders to empower their businesses without creating maintenance nightmares in the process. Every year we are closer and closer to intuitively create robust, scalable systems without falling in an endless cycle of corruption and despair.</p>
+
+<p>Of course, it&#8217;s also possible that future programmers will despise our feeble attempts at improving the Status Quo, decide that our tools are too narrow and restrictive, and end up exploiting all kinds of quirks to work around the platform limitations. And we&#8217;ll be back at the starting line.</p>
+
+<p>Nobody knows. And since we suck at predicting the future, maybe <a href="http://neo.jpl.nasa.gov/risk/">it doesn&#8217;t even matter</a>. We&#8217;ll see.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Adding file size in bytes to Explorer's Details View on Windows 2000 and XP]]></title>
@@ -32,11 +69,11 @@
 
 <p>When installed, the extension adds a new column called <strong>Size in Bytes</strong> which can be added to the explorer&#8217;s Details View:</p>
 
-<p><img src="http://wishfulcoding.com//raw.github.com/dredix/FileSizeXP/master/doc/images/ColumnSelection.png" alt="Column Selection" /></p>
+<p><a href="https://lh5.googleusercontent.com/-Eq_XZFBzVcg/UDQ8w4Z1gfI/AAAAAAAAAIw/XdMl1-_HoZQ/s800/ColumnSelection.png"><img alt="Column Selection" src="https://lh5.googleusercontent.com/-Eq_XZFBzVcg/UDQ8w4Z1gfI/AAAAAAAAAIw/XdMl1-_HoZQ/s800/ColumnSelection.png" /></a></p>
 
 <p>Select it, and you&#8217;ll get an extra column with the file size in glorious bytes:</p>
 
-<p><a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/Explorer.png"><img alt="Details View" style="width: 100%" src="http://wishfulcoding.com//raw.github.com/dredix/FileSizeXP/master/doc/images/Explorer.png" /></a></p>
+<p><a href="https://lh3.googleusercontent.com/-DgKb-qm1ByA/UDQ8wyqjbOI/AAAAAAAAAI4/NKNUQbOrAeg/s800/Explorer.png"><img alt="Details View" style="width: 100%" src="https://lh3.googleusercontent.com/-DgKb-qm1ByA/UDQ8wyqjbOI/AAAAAAAAAI4/NKNUQbOrAeg/s800/Explorer.png" /></a></p>
 
 <p>If you still use Windows 2000 or XP <s>don&#8217;t you think is time to move on?</s> and want to use the extension, follow these steps:</p>
 
