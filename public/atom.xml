@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Wishful Coding]]></title>
-  <link href="http://wishfulcoding.com/atom.xml" rel="self"/>
-  <link href="http://wishfulcoding.com/"/>
-  <updated>2012-08-22T12:14:11+10:00</updated>
-  <id>http://wishfulcoding.com/</id>
+  <link href="http://wishfulcoding.github.com/atom.xml" rel="self"/>
+  <link href="http://wishfulcoding.github.com/"/>
+  <updated>2012-08-22T20:33:30+10:00</updated>
+  <id>http://wishfulcoding.github.com/</id>
   <author>
     <name><![CDATA[Leonardo]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[On Wishful Thinking]]></title>
-    <link href="http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking/"/>
+    <link href="http://wishfulcoding.github.com/blog/2012/08/22/on-wishful-thinking/"/>
     <updated>2012-08-22T11:21:00+10:00</updated>
-    <id>http://wishfulcoding.com/blog/2012/08/22/on-wishful-thinking</id>
+    <id>http://wishfulcoding.github.com/blog/2012/08/22/on-wishful-thinking</id>
     <content type="html"><![CDATA[<p>I love <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen&#8217;s blog</a>, especially when he goes thermonuclear on his customers (or readers) for asking stupid questions or trying to go off topic or, you know, just plain trolling.</p>
 
 <p>Something I find funny about the highly technical posts on his blog is that Mr Chen usually supplements his explanations with witty remarks like &#8220;the customer managed to screw it despite this being clearly documented here and here and there.&#8221; Well of course he is being polite, since it should surprise no one the fact that most people just do not care about documentation or doing things the right way in general.</p>
@@ -52,9 +52,9 @@
   
   <entry>
     <title type="html"><![CDATA[Adding file size in bytes to Explorer's Details View on Windows 2000 and XP]]></title>
-    <link href="http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/"/>
+    <link href="http://wishfulcoding.github.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/"/>
     <updated>2012-08-22T01:19:00+10:00</updated>
-    <id>http://wishfulcoding.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp</id>
+    <id>http://wishfulcoding.github.com/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp</id>
     <content type="html"><![CDATA[<p>Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the <a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/FileProperties.png">properties dialog box</a>. You would think the Details view is a great place for that, considering the remarkable selection of columns you can include. Seriously, there is a <em>Mood</em> column but no <em>Size in bytes</em> or equivalent?</p>
 
 <p>On Windows XP and previous versions, you could write a <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/cc144067.aspx">shell extension</a> that implemented the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147.aspx">IColumnProvider</a> interface and add custom columns as needed. <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-wcstatus.html#id663427">TortoiseSVN</a> used these kind of extensions, for example, to show the status of files under source control directly on Windows Explorer.</p>
