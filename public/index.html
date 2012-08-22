@@ -82,7 +82,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding File Size in Bytes to Explorer.s Details View on Windows 2000 and XP</a></h1>
+      <h1 class="entry-title"><a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding File Size in Bytes to Explorer&#8217;s Details View on Windows 2000 and XP</a></h1>
     
     
       <p class="meta">
@@ -100,6 +100,8 @@
 
 <time datetime="2012-08-22T01:19:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
         
+         | <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/#disqus_thread">Comments</a>
+        
       </p>
     
   </header>
@@ -107,11 +109,11 @@
 
   <div class="entry-content"><p>Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the <a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/FileProperties.png">properties dialog box</a>. You would think the Details view is a great place for that, considering the remarkable selection of columns you can include. Seriously, there is a <em>Mood</em> column but no <em>Size in bytes</em> or equivalent?</p>
 
-<p>On Windows XP and previous versions, you could write a <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/cc144067(v=vs.85">shell extension</a>.aspx) that implemented the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147(v=vs.85">IColumnProvider</a>.aspx) interface and add custom columns as needed. <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-wcstatus.html#id663427">TortoiseSVN</a> used these kind of extensions, for example, to show the status of files under source control directly on Windows Explorer.</p>
+<p>On Windows XP and previous versions, you could write a <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/cc144067.aspx">shell extension</a> that implemented the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147.aspx">IColumnProvider</a> interface and add custom columns as needed. <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-wcstatus.html#id663427">TortoiseSVN</a> used these kind of extensions, for example, to show the status of files under source control directly on Windows Explorer.</p>
 
-<p>On Windows Vista, however, Microsoft <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147(v=vs.85">decided to remove the IColumnProvider interface</a>.aspx):</p>
+<p>On Windows Vista, however, Microsoft <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147.aspx">decided to remove the IColumnProvider interface</a>:</p>
 
-<blockquote><p><strong>Note</strong>  Support for <strong>IColumnProvider</strong> has been removed as of Windows Vista. The Windows property system is used in its place. See <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ff728898(v=vs.85">Windows Property System</a>.aspx) for conceptual materials that explain the use of the new system.</p></blockquote>
+<blockquote><p><strong>Note</strong>  Support for <strong>IColumnProvider</strong> has been removed as of Windows Vista. The Windows property system is used in its place. See <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/ff728898.aspx">Windows Property System</a> for conceptual materials that explain the use of the new system.</p></blockquote>
 
 <p>My guess is that rogue extensions were causing a lot of performance/stability issues on Windows Explorer and Microsoft didn&#8217;t like being blamed for them (&#8220;Why is Explorer so slow? Stupid Microsoft Die Die Die!&#8221;), so they decided to retire the interface altogether. I haven&#8217;t got too far into the Windows property system but I suspect you cannot mimic the full functionality of custom columns on the details view for every type of file.</p>
 
@@ -166,7 +168,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding file size in bytes to Explorer.s Details View on Windows 2000 and XP</a>
+        <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding file size in bytes to Explorer&#8217;s Details View on Windows 2000 and XP</a>
       </li>
     
   </ul>
@@ -192,7 +194,7 @@
 
         github.showRepos({
             user: 'dredix',
-            count: 0,
+            count: 4,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -236,7 +238,7 @@
   
 
 <script type="text/javascript">
-      var disqus_shortname = 'dredix';
+      var disqus_shortname = 'wishfulcoding';
       
         
         var disqus_script = 'count.js';
