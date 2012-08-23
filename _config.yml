@@ -4,7 +4,7 @@
 
 url: http://wishfulcoding.com
 title: Wishful Coding
-subtitle: Because clearly wishful thinking alone is not enough.
+subtitle: Shake well before using. May cause drowsiness or dizziness.
 author: Leonardo 
 simple_search: http://google.com/search
 description: Programming, tinkering and pragmatic problem solving.
@@ -93,7 +93,7 @@ disqus_short_name: wishfulcoding
 disqus_show_comment_count: true
 
 # Google Analytics
-google_analytics_tracking_id: UA-4278948-1
+google_analytics_tracking_id: UA-34303814-1
 
 # Facebook Like
 facebook_like: false
