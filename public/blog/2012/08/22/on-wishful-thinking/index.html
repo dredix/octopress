@@ -218,15 +218,7 @@
   <a href="https://github.com/dredix">@dredix</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
+      $(document).ready(function(){
         github.showRepos({
             user: 'dredix',
             count: 4,
