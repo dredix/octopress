@@ -11,8 +11,11 @@ var github = (function(){
   return {
     showRepos: function(options){
 
-      $.getJSON("https://api.github.com/users/"+options.user+"/repos?sort=updated&direction=desc&callback=?", 
-        function(response) {
+      $.ajax({
+        url: "https://api.github.com/users/"+options.user+"/repos?sort=updated&direction=desc&callback=?", 
+        type: 'jsonp',
+        error: function (err) { $(options.target + ' li.loading').addClass('error').text("Error loading feed"); },
+        success: function(response) {
           var repos = [];
           if (!response || response.data.length == 0) { return; }
           for (var i = 0; i < response.data.length; i++) {
@@ -32,7 +35,7 @@ var github = (function(){
           if (options.count) { repos.splice(options.count); }
           
           render(options.target, repos);
-        
+        } 
       });
     }
   };
