@@ -4,7 +4,7 @@
   <title><![CDATA[Wishful Coding]]></title>
   <link href="http://wishfulcoding.com/atom.xml" rel="self"/>
   <link href="http://wishfulcoding.com/"/>
-  <updated>2012-08-28T22:47:40+10:00</updated>
+  <updated>2012-09-02T23:57:32+10:00</updated>
   <id>http://wishfulcoding.com/</id>
   <author>
     <name><![CDATA[Leonardo]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Google Chrome: First Impressions (4 years later)]]></title>
+    <link href="http://wishfulcoding.com/blog/2012/09/02/google-chrome-first-impressions-4-years-later/"/>
+    <updated>2012-09-02T23:25:00+10:00</updated>
+    <id>http://wishfulcoding.com/blog/2012/09/02/google-chrome-first-impressions-4-years-later</id>
+    <content type="html"><![CDATA[<p>Exactly 4 years ago, on 2 September 2008, Google released the first beta of their web browser: <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>. I remember how difficult it was to download it that same day, with Google&#8217;s servers probably brought to their knees, and then how I stopped at pretty much everyone&#8217;s desk to <s>procrastinate</s> exchange impressions. I decided to keep it around for a while to see where it would go. Eventually I stopped using all the other browsers on a daily basis, and today it is the first software I install on any new computer (with the obvious exception of the operating system itself). This is what I thought back then:</p>
+
+<blockquote><p>Just downloaded Chrome, a new browser by Google, and their latest step towards absolute Internet domination.</p>
+
+<p>First thing I notice after installing: It&#8217;s fast. As in impossibly fast, especially when compared to Internet Explorer. Opening tabs is instantaneous: there is no weird delay between pressing the new tab button and that tab being ready to use.</p>
+
+<p>The vertical scrolling in my laptop&#8217;s trackpad is broken: It only scrolls down. It does work however with the in-browser adobe PDF reader.</p>
+
+<p>Searching inside a page is simple, although somewhat limited. You can&#8217;t specify case-sensitive searches, for instance.</p>
+
+<p>Importing from Firefox worked flawlessly.</p>
+
+<p>Zooming in has a devastating effect on page layout: Only the font size is incremented. I thought this was a solved problem on modern browsers. I hope they fix it soon.</p>
+
+<p><a href="http://backpackit.com">Backpack</a> has a weird alignment in the login page. Everything else is working as expected.</p>
+
+<p>I&#8217;m trying some random websites, and all of them are rendering fine: <a href="http://www.joelonsoftware.com/">Joel on Software</a>, <a href="http://www.codinghorror.com/">Coding Horror</a>, <a href="http://www.fakeplasticrock.com/">Fake Plastic Rock</a>, <a href="http://stackoverflow.com/">Stack Overflow</a>, <a href="http://alltop.com/">Alltop</a>, <a href="http://popurls.com/">Popurls</a> and of course <a href="http://www.google.com">Google itself</a>.</p>
+
+<p>The address bar is not as fast as Firefox&#8217;s awesome bar. It&#8217;s not bad, though.</p>
+
+<p>Searches through the address bar use the Google site corresponding to my current location and I can&#8217;t find a way to change it to google.com instead.</p>
+
+<p>In a perfect world, an archetypal web browser would exist and every single website would render perfectly in that browser. We don&#8217;t live in a perfect world, though, and at least in these early stages I don&#8217;t see Google Chrome being the one and only browser for every user and every possible situation. I&#8217;ll keep an eye on it anyway to see where it goes.</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[On Wishful Thinking]]></title>
