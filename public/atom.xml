@@ -4,7 +4,7 @@
   <title><![CDATA[Wishful Coding]]></title>
   <link href="http://wishfulcoding.com/atom.xml" rel="self"/>
   <link href="http://wishfulcoding.com/"/>
-  <updated>2012-09-05T00:05:17+10:00</updated>
+  <updated>2012-09-11T17:24:59+10:00</updated>
   <id>http://wishfulcoding.com/</id>
   <author>
     <name><![CDATA[Leonardo]]></name>
@@ -12,6 +12,260 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dynamic DNS Updates on Namecheap Via a PowerShell Script]]></title>
+    <link href="http://wishfulcoding.com/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/"/>
+    <updated>2012-09-10T23:38:00+10:00</updated>
+    <id>http://wishfulcoding.com/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script</id>
+    <content type="html"><![CDATA[<p>Last year I decided to transfer my domains from GoDaddy to <a href="http://www.namecheap.com/">Namecheap</a>, for <a href="http://geekfeminism.wikia.com/wiki/Go_Daddy's_advertising">no</a> <a href="http://www.huffingtonpost.com/2011/03/31/bob-parsons-godaddy-ceo-elephant-hunt_n_843121.html">particular</a> <a href="http://arstechnica.com/tech-policy/2011/12/godaddy-faces-december-29-boycott-over-sopa-support/">reason</a>. With the new registrar I wanted to try some things I never got around to do before, including setting up a subdomain for easy remote access to a location I shall henceforth refer to as Home.</p>
+
+<p>Since Home lacks a static IP I had to enable dynamic DNS for the domain, which basically allows changing the IP address associated to a given subdomain programmatically and with immediate effect. Fortunately there is <a href="http://www.namecheap.com/support/knowledgebase/category.aspx/11/dynamic-dns">plenty of information</a> on <a href="http://www.namecheap.com/support/knowledgebase/article.aspx/36/11/what-should-i-do-in-order-to-start-using-dynamic-dns">what needs to be done</a>.</p>
+
+<p>The step I had trouble with was finding a client to perform the DNS updates on a regular fashion, say, every hour, from a Windows PC behind a proxy that requires authentication. Now Namecheap has a <a href="http://www.namecheap.com/support/knowledgebase/article.aspx/111/11/using-namecheap-dynamic-dns-client-version-20x-beta">Dynamic DNS client of their own</a>, but for reasons I can&#8217;t remember at this moment it didn&#8217;t work for me when I tried it. Namecheap also provides a list of <a href="http://www.namecheap.com/support/knowledgebase/article.aspx/5/11/are-there-any-alternate-dynamic-dns-clients">alternate clients</a>, but again none of them fitted my bill exactly. As a last resort, they also allow updating the DNS <a href="http://www.namecheap.com/support/knowledgebase/article.aspx/29/11/how-to-use-the-browser-to-dynamically-update-hosts-ip">via a HTTP GET request</a>, which means you can easily do it with a web browser or programmatically with an appropriate HTTP command/library.</p>
+
+<p>So even though this is probably a problem that has been solved many times, I wanted to indulge in a little bit of <a href="http://en.wikipedia.org/wiki/Not_invented_here">NIH</a> and write my own client as a PowerShell script. Specifically I wanted to:</p>
+
+<ol>
+<li>Load parameters from a configuration file</li>
+<li>Retrieve current public IP address</li>
+<li>Compare IP address against the one on Subdomain&#8217;s A record</li>
+<li>Update A record if found different</li>
+<li>Send an email with the results</li>
+</ol>
+
+
+<p>This is what I did.</p>
+
+<h2>Configuration File</h2>
+
+<p>Instead of hardcoding things like the domain and password I wanted to load configuration details from an <a href="http://en.wikipedia.org/wiki/INI_file">INI file</a>, so that the script could be reusable. Why INI and not, say, XML? Because for such a simple list of parameters I find the INI format much easier to read. I could also have used <a href="http://www.yaml.org/">YAML</a>, but then it&#8217;s just a simple change from equal sign to colon on the parser. Anyway, here&#8217;s the full list of parameters to load from the INI file:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># The subdomain to be updated, which has to be previously configured 
+</span><span class='line'># as an A record.
+</span><span class='line'>DDNSSubdomain   = "subdomain"
+</span><span class='line'># The domain registered through Namecheap, with Dynamic DNS enabled.
+</span><span class='line'>DDNSDomain      = "mydomain.com"
+</span><span class='line'># The password for authorising the updates, obtained from Namecheap
+</span><span class='line'># upon enabling Dynamic DNS (see http://tinyurl.com/d6ao9de).
+</span><span class='line'>DDNSPassword    = "1234567890abcdef1234567890abcdef"
+</span><span class='line'># An email account from which a message with the results of the
+</span><span class='line'># update attempt will be sent.
+</span><span class='line'>EmailFrom       = "from@example.com"
+</span><span class='line'># The recipient of the message.
+</span><span class='line'>EmailTo         = "to@example.com"
+</span><span class='line'># The SMTP server for sending the email. I'm currently using GMail.
+</span><span class='line'>SMTPServer      = "smtp.gmail.com"
+</span><span class='line'># The SMTP port.
+</span><span class='line'>SMTPPort        = 587
+</span><span class='line'># SMTP username. If you are sending messages through GMail, then it
+</span><span class='line'># would be your Google account.
+</span><span class='line'>SMTPAuthUsername= "gmailuser"
+</span><span class='line'># SMTP password.
+</span><span class='line'>SMTPAuthPassword= "p4ssw0rd"
+</span><span class='line'># If connecting through a proxy, this parameter should be set to 1.
+</span><span class='line'># Otherwise it should be 0 or left unitialised
+</span><span class='line'>ProxyEnabled    = 1
+</span><span class='line'># The proxy address. Ignored if ProxyEnabled is not 1.
+</span><span class='line'>ProxyAddress    = "proxy.mydomain.com"
+</span><span class='line'># The proxy port.
+</span><span class='line'>ProxyPort       = 8080
+</span><span class='line'># Proxy domain.
+</span><span class='line'>ProxyDomain     = "corporate"
+</span><span class='line'># Proxy credentials, if required.
+</span><span class='line'>ProxyUser       = "domainuser"
+</span><span class='line'># See above.
+</span><span class='line'>ProxyPassword   = "domainpassword"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For parsing the file I use the following snippet, adapted from <a href="http://stackoverflow.com/a/422529">Artem Tikhomirov&#8217;s code posted on Stack Overflow</a>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Function Parse-IniFile ($file) {
+</span><span class='line'>    $ini = @{}
+</span><span class='line'>    switch -regex -file $file {
+</span><span class='line'>        "^\s*([^#].+?)\s*=\s*\`"*(.*?)\`"*$" {
+</span><span class='line'>            $name,$value = $matches[1..2]
+</span><span class='line'>            $ini[$name] = $value.Trim()
+</span><span class='line'>        }
+</span><span class='line'>    }
+</span><span class='line'>    $ini
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Retrieving current public IP address</h2>
+
+<p>For this step I use <a href="http://myip.dnsomatic.com">DNS-O-Matic</a>, which means there is nothing to parse and the result can be used immediately. I don&#8217;t remember where I got the tip from so I&#8217;ll just give <a href="http://poshcode.com/2661">this guy the credit</a>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Retrieve public IP address
+</span><span class='line'>$CurrentIp = (New-Object System.Net.WebClient).DownloadString('http://myip.dnsomatic.com/')
+</span><span class='line'># Validate using a regular expression (only IPv4 supported at this stage)
+</span><span class='line'>$Pattern   = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
+</span><span class='line'>if (!($CurrentIp -match $Pattern)) {
+</span><span class='line'>    Log-Error "A valid public IP address could not be retrieved"
+</span><span class='line'>    # Error handling
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Comparing IP addresses and updating A record</h2>
+
+<p>I need to perform the GET request to update the A record, but only if the current public IP address is different to the one already set. I do not want, however, to spam the Namecheap servers with continuous queries every time I want to verify the existing value. So instead of retrieving the A record from Namecheap, I use a local environment variable to store the last known IP address. That works because I&#8217;m updating the IP from a single server, so there are no possible conflicts to be worried about.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Retrieve IP address stored on environment variable.
+</span><span class='line'>$StoredIp  = [Environment]::GetEnvironmentVariable("PUBLIC_IP","User")
+</span><span class='line'>
+</span><span class='line'># If IP address hasn't changed, then finish the script.
+</span><span class='line'>if ($StoredIp -eq $CurrentIp ) {
+</span><span class='line'>    # Log message, etc.
+</span><span class='line'>    exit 0
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'># Otherwise, create update URI and perform a Web request.
+</span><span class='line'>$UpdateUrl     = "https://dynamicdns.park-your-domain.com/update?host=$DDNSSubdomain&amp;domain=$DDNSDomain&amp;password=$DDNSPassword&amp;ip=$CurrentIp"
+</span><span class='line'>$UpdateDDNS    = (New-Object System.Net.WebClient).DownloadString($UpdateUrl)
+</span><span class='line'>
+</span><span class='line'># Error handling omitted for clarity. Or laziness.
+</span><span class='line'>
+</span><span class='line'># Finally, set the environment variable to the new IP address
+</span><span class='line'>[Environment]::SetEnvironmentVariable("PUBLIC_IP", $CurrentIp, "User")</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Sending an email to notify the change</h2>
+
+<p>Next we need to report the change of IP address via email, so I can validate and/or troubleshoot in case something went wrong.</p>
+
+<p>You can choose between writing a log to a local text file, for example, and then include that file as an email attachment. In my case, since I never expect the logs to be too large, I&#8217;m just concatenating to a string in memory and then writing to the body of the message. Here&#8217;s my function for sending the email, based on <a href="http://stackoverflow.com/a/2250309/1014">this code from Christian Muggli</a>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'># Send an email with the contents of the log buffer.
+</span><span class='line'># SMTP configuration and credentials are in the configuration dictionary.
+</span><span class='line'>function Email-Log ($config, $message) {
+</span><span class='line'>    $EmailFrom        = $config["EmailFrom"]
+</span><span class='line'>    $EmailTo          = $config["EmailTo"]
+</span><span class='line'>    $EmailSubject     = "DDNS log $(get-date -format u)"  
+</span><span class='line'>      
+</span><span class='line'>    $SMTPServer       = $config["SMTPServer"]
+</span><span class='line'>    $SMTPPort         = $config["SMTPPort"]
+</span><span class='line'>    $SMTPAuthUsername = $config["SMTPAuthUsername"]
+</span><span class='line'>    $SMTPAuthPassword = $config["SMTPAuthPassword"]
+</span><span class='line'>
+</span><span class='line'>    $mailmessage = New-Object System.Net.Mail.MailMessage 
+</span><span class='line'>    $mailmessage.From = $EmailFrom
+</span><span class='line'>    $mailmessage.To.Add($EmailTo)
+</span><span class='line'>    $mailmessage.Subject = $EmailSubject
+</span><span class='line'>    $mailmessage.Body = $message
+</span><span class='line'>
+</span><span class='line'>    $SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, $SMTPPort) 
+</span><span class='line'>    $SMTPClient.EnableSsl = $true 
+</span><span class='line'>    $SMTPClient.Credentials = New-Object System.Net.NetworkCredential("$SMTPAuthUsername", "$SMTPAuthPassword") 
+</span><span class='line'>    $SMTPClient.Send($mailmessage)
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://gist.github.com/3508143">The full script can be downloaded from Github</a>.</p>
+
+<p>To run the query, open a console and execute the following line:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>powershell -command "& 'C:\path\to\script\UpdateDDNS.ps1 -c config.ini' "</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The final step would be to schedule the command so it runs every hour, for example. You just need to set up a task on Windows Task Scheduler for that, but since you asked, <a href="http://blogs.technet.com/b/heyscriptingguy/archive/2012/08/11/weekend-scripter-use-the-windows-task-scheduler-to-run-a-windows-powershell-script.aspx">here are some instructions to get you started</a>.</p>
+
+<p>So that&#8217;s it: A quick, cheap and easy way to keep your Namecheap domains with Dynamic DNS up to date. Now that we&#8217;re done, let&#8217;s return to bashing Bob Parsons on Twitter, shall we?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Google Chrome: First Impressions (4 years later)]]></title>
