@@ -4,6 +4,9 @@ title: "Dynamic DNS Updates on Namecheap Via a PowerShell Script"
 date: 2012-09-10 23:38
 comments: true
 categories: 
+ - PowerShell
+ - Web hosting
+ - Dynamic DNS
 ---
 Last year I decided to transfer my domains from GoDaddy to [Namecheap](http://www.namecheap.com/), for [no](http://geekfeminism.wikia.com/wiki/Go_Daddy's_advertising) [particular](http://www.huffingtonpost.com/2011/03/31/bob-parsons-godaddy-ceo-elephant-hunt_n_843121.html) [reason](http://arstechnica.com/tech-policy/2011/12/godaddy-faces-december-29-boycott-over-sopa-support/). With the new registrar I wanted to try some things I never got around to do before, including setting up a subdomain for easy remote access to a location I shall henceforth refer to as Home.
 
@@ -19,13 +22,13 @@ So even though this is probably a problem that has been solved many times, I wan
 4. Update A record if found different
 5. Send an email with the results
 
-This is what I did.
+Here's is what I did.
 
-## Configuration File
+### Configuration File
 
 Instead of hardcoding things like the domain and password I wanted to load configuration details from an [INI file](http://en.wikipedia.org/wiki/INI_file), so that the script could be reusable. Why INI and not, say, XML? Because for such a simple list of parameters I find the INI format much easier to read. I could also have used [YAML](http://www.yaml.org/), but then it's just a simple change from equal sign to colon on the parser. Anyway, here's the full list of parameters to load from the INI file:
 
-{% codeblock %}
+``` ruby
 # The subdomain to be updated, which has to be previously configured 
 # as an A record.
 DDNSSubdomain   = "subdomain"
@@ -61,11 +64,11 @@ ProxyDomain     = "corporate"
 ProxyUser       = "domainuser"
 # See above.
 ProxyPassword   = "domainpassword"
-{% endcodeblock %}
+```
 
-For parsing the file I use the following snippet, adapted from [Artem Tikhomirov's code posted on Stack Overflow](http://stackoverflow.com/a/422529):
+For parsing the file I used the following snippet, adapted from [Artem Tikhomirov's code posted on Stack Overflow](http://stackoverflow.com/a/422529):
 
-{% codeblock %}
+``` ruby
 Function Parse-IniFile ($file) {
     $ini = @{}
     switch -regex -file $file {
@@ -76,13 +79,13 @@ Function Parse-IniFile ($file) {
     }
     $ini
 }
-{% endcodeblock %}
+```
 
-## Retrieving current public IP address
+### Retrieving current public IP address
 
-For this step I use [DNS-O-Matic](http://myip.dnsomatic.com), which means there is nothing to parse and the result can be used immediately. I don't remember where I got the tip from so I'll just give [this guy the credit](http://poshcode.com/2661):
+With [DNS-O-Matic](http://myip.dnsomatic.com) you can get your current public IP address in a plain format so there is nothing to parse and the result can be used immediately. I don't remember where I got the tip from so I'll just give [this guy the credit](http://poshcode.com/2661):
 
-{% codeblock %}
+``` ruby
 # Retrieve public IP address
 $CurrentIp = (New-Object System.Net.WebClient).DownloadString('http://myip.dnsomatic.com/')
 # Validate using a regular expression (only IPv4 supported at this stage)
@@ -91,13 +94,13 @@ if (!($CurrentIp -match $Pattern)) {
     Log-Error "A valid public IP address could not be retrieved"
     # Error handling
 }
-{% endcodeblock %}
+```
 
-## Comparing IP addresses and updating A record 
+### Comparing IP addresses and updating A record 
 
 I need to perform the GET request to update the A record, but only if the current public IP address is different to the one already set. I do not want, however, to spam the Namecheap servers with continuous queries every time I want to verify the existing value. So instead of retrieving the A record from Namecheap, I use a local environment variable to store the last known IP address. That works because I'm updating the IP from a single server, so there are no possible conflicts to be worried about.
 
-{% codeblock %}
+``` ruby
 # Retrieve IP address stored on environment variable.
 $StoredIp  = [Environment]::GetEnvironmentVariable("PUBLIC_IP","User")
 
@@ -115,15 +118,15 @@ $UpdateDDNS    = (New-Object System.Net.WebClient).DownloadString($UpdateUrl)
 
 # Finally, set the environment variable to the new IP address
 [Environment]::SetEnvironmentVariable("PUBLIC_IP", $CurrentIp, "User")
-{% endcodeblock %}
+```
 
-## Sending an email to notify the change
+### Sending an email to notify the change
 
-Next we need to report the change of IP address via email, so I can validate and/or troubleshoot in case something went wrong.
+Next is to report the change of IP address via email, so I can validate and/or troubleshoot in case something went wrong.
 
 You can choose between writing a log to a local text file, for example, and then include that file as an email attachment. In my case, since I never expect the logs to be too large, I'm just concatenating to a string in memory and then writing to the body of the message. Here's my function for sending the email, based on [this code from Christian Muggli](http://stackoverflow.com/a/2250309/1014): 
 
-{% codeblock %}
+``` ruby
 # Send an email with the contents of the log buffer.
 # SMTP configuration and credentials are in the configuration dictionary.
 function Email-Log ($config, $message) {
@@ -147,15 +150,14 @@ function Email-Log ($config, $message) {
     $SMTPClient.Credentials = New-Object System.Net.NetworkCredential("$SMTPAuthUsername", "$SMTPAuthPassword") 
     $SMTPClient.Send($mailmessage)
 }
-{% endcodeblock %}
+```
 
 [The full script can be downloaded from Github](https://gist.github.com/3508143).
 
 To run the query, open a console and execute the following line:
 
-{% codeblock %}
-powershell -command "& 'C:\path\to\script\UpdateDDNS.ps1 -c config.ini' "
-{% endcodeblock %}
+	powershell -command "& 'C:\path\to\script\UpdateDDNS.ps1 -c config.ini' "
+
 
 The final step would be to schedule the command so it runs every hour, for example. You just need to set up a task on Windows Task Scheduler for that, but since you asked, [here are some instructions to get you started](http://blogs.technet.com/b/heyscriptingguy/archive/2012/08/11/weekend-scripter-use-the-windows-task-scheduler-to-run-a-windows-powershell-script.aspx).
 

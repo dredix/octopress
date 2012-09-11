@@ -124,13 +124,13 @@
 </ol>
 
 
-<p>This is what I did.</p>
+<p>Here&#8217;s is what I did.</p>
 
-<h2>Configuration File</h2>
+<h3>Configuration File</h3>
 
 <p>Instead of hardcoding things like the domain and password I wanted to load configuration details from an <a href="http://en.wikipedia.org/wiki/INI_file">INI file</a>, so that the script could be reusable. Why INI and not, say, XML? Because for such a simple list of parameters I find the INI format much easier to read. I could also have used <a href="http://www.yaml.org/">YAML</a>, but then it&#8217;s just a simple change from equal sign to colon on the parser. Anyway, here&#8217;s the full list of parameters to load from the INI file:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -165,46 +165,47 @@
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># The subdomain to be updated, which has to be previously configured 
-</span><span class='line'># as an A record.
-</span><span class='line'>DDNSSubdomain   = "subdomain"
-</span><span class='line'># The domain registered through Namecheap, with Dynamic DNS enabled.
-</span><span class='line'>DDNSDomain      = "mydomain.com"
-</span><span class='line'># The password for authorising the updates, obtained from Namecheap
-</span><span class='line'># upon enabling Dynamic DNS (see http://tinyurl.com/d6ao9de).
-</span><span class='line'>DDNSPassword    = "1234567890abcdef1234567890abcdef"
-</span><span class='line'># An email account from which a message with the results of the
-</span><span class='line'># update attempt will be sent.
-</span><span class='line'>EmailFrom       = "from@example.com"
-</span><span class='line'># The recipient of the message.
-</span><span class='line'>EmailTo         = "to@example.com"
-</span><span class='line'># The SMTP server for sending the email. I'm currently using GMail.
-</span><span class='line'>SMTPServer      = "smtp.gmail.com"
-</span><span class='line'># The SMTP port.
-</span><span class='line'>SMTPPort        = 587
-</span><span class='line'># SMTP username. If you are sending messages through GMail, then it
-</span><span class='line'># would be your Google account.
-</span><span class='line'>SMTPAuthUsername= "gmailuser"
-</span><span class='line'># SMTP password.
-</span><span class='line'>SMTPAuthPassword= "p4ssw0rd"
-</span><span class='line'># If connecting through a proxy, this parameter should be set to 1.
-</span><span class='line'># Otherwise it should be 0 or left unitialised
-</span><span class='line'>ProxyEnabled    = 1
-</span><span class='line'># The proxy address. Ignored if ProxyEnabled is not 1.
-</span><span class='line'>ProxyAddress    = "proxy.mydomain.com"
-</span><span class='line'># The proxy port.
-</span><span class='line'>ProxyPort       = 8080
-</span><span class='line'># Proxy domain.
-</span><span class='line'>ProxyDomain     = "corporate"
-</span><span class='line'># Proxy credentials, if required.
-</span><span class='line'>ProxyUser       = "domainuser"
-</span><span class='line'># See above.
-</span><span class='line'>ProxyPassword   = "domainpassword"</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># The subdomain to be updated, which has to be previously configured </span>
+</span><span class='line'><span class="c1"># as an A record.</span>
+</span><span class='line'><span class="no">DDNSSubdomain</span>   <span class="o">=</span> <span class="s2">&quot;subdomain&quot;</span>
+</span><span class='line'><span class="c1"># The domain registered through Namecheap, with Dynamic DNS enabled.</span>
+</span><span class='line'><span class="no">DDNSDomain</span>      <span class="o">=</span> <span class="s2">&quot;mydomain.com&quot;</span>
+</span><span class='line'><span class="c1"># The password for authorising the updates, obtained from Namecheap</span>
+</span><span class='line'><span class="c1"># upon enabling Dynamic DNS (see http://tinyurl.com/d6ao9de).</span>
+</span><span class='line'><span class="no">DDNSPassword</span>    <span class="o">=</span> <span class="s2">&quot;1234567890abcdef1234567890abcdef&quot;</span>
+</span><span class='line'><span class="c1"># An email account from which a message with the results of the</span>
+</span><span class='line'><span class="c1"># update attempt will be sent.</span>
+</span><span class='line'><span class="no">EmailFrom</span>       <span class="o">=</span> <span class="s2">&quot;from@example.com&quot;</span>
+</span><span class='line'><span class="c1"># The recipient of the message.</span>
+</span><span class='line'><span class="no">EmailTo</span>         <span class="o">=</span> <span class="s2">&quot;to@example.com&quot;</span>
+</span><span class='line'><span class="c1"># The SMTP server for sending the email. I&#39;m currently using GMail.</span>
+</span><span class='line'><span class="no">SMTPServer</span>      <span class="o">=</span> <span class="s2">&quot;smtp.gmail.com&quot;</span>
+</span><span class='line'><span class="c1"># The SMTP port.</span>
+</span><span class='line'><span class="no">SMTPPort</span>        <span class="o">=</span> <span class="mi">587</span>
+</span><span class='line'><span class="c1"># SMTP username. If you are sending messages through GMail, then it</span>
+</span><span class='line'><span class="c1"># would be your Google account.</span>
+</span><span class='line'><span class="no">SMTPAuthUsername</span><span class="o">=</span> <span class="s2">&quot;gmailuser&quot;</span>
+</span><span class='line'><span class="c1"># SMTP password.</span>
+</span><span class='line'><span class="no">SMTPAuthPassword</span><span class="o">=</span> <span class="s2">&quot;p4ssw0rd&quot;</span>
+</span><span class='line'><span class="c1"># If connecting through a proxy, this parameter should be set to 1.</span>
+</span><span class='line'><span class="c1"># Otherwise it should be 0 or left unitialised</span>
+</span><span class='line'><span class="no">ProxyEnabled</span>    <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'><span class="c1"># The proxy address. Ignored if ProxyEnabled is not 1.</span>
+</span><span class='line'><span class="no">ProxyAddress</span>    <span class="o">=</span> <span class="s2">&quot;proxy.mydomain.com&quot;</span>
+</span><span class='line'><span class="c1"># The proxy port.</span>
+</span><span class='line'><span class="no">ProxyPort</span>       <span class="o">=</span> <span class="mi">8080</span>
+</span><span class='line'><span class="c1"># Proxy domain.</span>
+</span><span class='line'><span class="no">ProxyDomain</span>     <span class="o">=</span> <span class="s2">&quot;corporate&quot;</span>
+</span><span class='line'><span class="c1"># Proxy credentials, if required.</span>
+</span><span class='line'><span class="no">ProxyUser</span>       <span class="o">=</span> <span class="s2">&quot;domainuser&quot;</span>
+</span><span class='line'><span class="c1"># See above.</span>
+</span><span class='line'><span class="no">ProxyPassword</span>   <span class="o">=</span> <span class="s2">&quot;domainpassword&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>For parsing the file I use the following snippet, adapted from <a href="http://stackoverflow.com/a/422529">Artem Tikhomirov&#8217;s code posted on Stack Overflow</a>:</p>
+<p>For parsing the file I used the following snippet, adapted from <a href="http://stackoverflow.com/a/422529">Artem Tikhomirov&#8217;s code posted on Stack Overflow</a>:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -214,23 +215,24 @@
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>Function Parse-IniFile ($file) {
-</span><span class='line'>    $ini = @{}
-</span><span class='line'>    switch -regex -file $file {
-</span><span class='line'>        "^\s*([^#].+?)\s*=\s*\`"*(.*?)\`"*$" {
-</span><span class='line'>            $name,$value = $matches[1..2]
-</span><span class='line'>            $ini[$name] = $value.Trim()
-</span><span class='line'>        }
-</span><span class='line'>    }
-</span><span class='line'>    $ini
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Function</span> <span class="no">Parse</span><span class="o">-</span><span class="no">IniFile</span> <span class="p">(</span><span class="vg">$file</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="vg">$ini</span> <span class="o">=</span> <span class="err">@</span><span class="p">{}</span>
+</span><span class='line'>    <span class="n">switch</span> <span class="o">-</span><span class="n">regex</span> <span class="o">-</span><span class="n">file</span> <span class="vg">$file</span> <span class="p">{</span>
+</span><span class='line'>        <span class="s2">&quot;^</span><span class="se">\s</span><span class="s2">*([^#].+?)</span><span class="se">\s</span><span class="s2">*=</span><span class="se">\s</span><span class="s2">*\`&quot;</span><span class="o">*</span><span class="p">(</span><span class="o">.</span><span class="n">*</span><span class="sc">?)</span><span class="p">\</span><span class="sb">`&quot;*$&quot; {</span>
+</span><span class='line'><span class="sb">            $name,$value = $matches[1..2]</span>
+</span><span class='line'><span class="sb">            $ini[$name] = $value.Trim()</span>
+</span><span class='line'><span class="sb">        }</span>
+</span><span class='line'><span class="sb">    }</span>
+</span><span class='line'><span class="sb">    $ini</span>
+</span><span class='line'><span class="sb">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Retrieving current public IP address</h2>
+<h3>Retrieving current public IP address</h3>
 
-<p>For this step I use <a href="http://myip.dnsomatic.com">DNS-O-Matic</a>, which means there is nothing to parse and the result can be used immediately. I don&#8217;t remember where I got the tip from so I&#8217;ll just give <a href="http://poshcode.com/2661">this guy the credit</a>:</p>
+<p>With <a href="http://myip.dnsomatic.com">DNS-O-Matic</a> you can get your current public IP address in a plain format so there is nothing to parse and the result can be used immediately. I don&#8217;t remember where I got the tip from so I&#8217;ll just give <a href="http://poshcode.com/2661">this guy the credit</a>:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -238,21 +240,22 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Retrieve public IP address
-</span><span class='line'>$CurrentIp = (New-Object System.Net.WebClient).DownloadString('http://myip.dnsomatic.com/')
-</span><span class='line'># Validate using a regular expression (only IPv4 supported at this stage)
-</span><span class='line'>$Pattern   = '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}'
-</span><span class='line'>if (!($CurrentIp -match $Pattern)) {
-</span><span class='line'>    Log-Error "A valid public IP address could not be retrieved"
-</span><span class='line'>    # Error handling
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Retrieve public IP address</span>
+</span><span class='line'><span class="vg">$CurrentIp</span> <span class="o">=</span> <span class="p">(</span><span class="no">New</span><span class="o">-</span><span class="no">Object</span> <span class="no">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">&#39;http://myip.dnsomatic.com/&#39;</span><span class="p">)</span>
+</span><span class='line'><span class="c1"># Validate using a regular expression (only IPv4 supported at this stage)</span>
+</span><span class='line'><span class="vg">$Pattern</span>   <span class="o">=</span> <span class="s1">&#39;\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}&#39;</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="vg">$CurrentIp</span> <span class="o">-</span><span class="n">match</span> <span class="vg">$Pattern</span><span class="p">))</span> <span class="p">{</span>
+</span><span class='line'>    <span class="no">Log</span><span class="o">-</span><span class="no">Error</span> <span class="s2">&quot;A valid public IP address could not be retrieved&quot;</span>
+</span><span class='line'>    <span class="c1"># Error handling</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Comparing IP addresses and updating A record</h2>
+<h3>Comparing IP addresses and updating A record</h3>
 
 <p>I need to perform the GET request to update the A record, but only if the current public IP address is different to the one already set. I do not want, however, to spam the Namecheap servers with continuous queries every time I want to verify the existing value. So instead of retrieving the A record from Namecheap, I use a local environment variable to store the last known IP address. That works because I&#8217;m updating the IP from a single server, so there are no possible conflicts to be worried about.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -269,32 +272,33 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Retrieve IP address stored on environment variable.
-</span><span class='line'>$StoredIp  = [Environment]::GetEnvironmentVariable("PUBLIC_IP","User")
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Retrieve IP address stored on environment variable.</span>
+</span><span class='line'><span class="vg">$StoredIp</span>  <span class="o">=</span> <span class="o">[</span><span class="no">Environment</span><span class="o">]::</span><span class="no">GetEnvironmentVariable</span><span class="p">(</span><span class="s2">&quot;PUBLIC_IP&quot;</span><span class="p">,</span><span class="s2">&quot;User&quot;</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'># If IP address hasn't changed, then finish the script.
-</span><span class='line'>if ($StoredIp -eq $CurrentIp ) {
-</span><span class='line'>    # Log message, etc.
-</span><span class='line'>    exit 0
-</span><span class='line'>}
+</span><span class='line'><span class="c1"># If IP address hasn&#39;t changed, then finish the script.</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="vg">$StoredIp</span> <span class="o">-</span><span class="n">eq</span> <span class="vg">$CurrentIp</span> <span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="c1"># Log message, etc.</span>
+</span><span class='line'>    <span class="nb">exit</span> <span class="mi">0</span>
+</span><span class='line'><span class="p">}</span>
 </span><span class='line'>
-</span><span class='line'># Otherwise, create update URI and perform a Web request.
-</span><span class='line'>$UpdateUrl     = "https://dynamicdns.park-your-domain.com/update?host=$DDNSSubdomain&amp;domain=$DDNSDomain&amp;password=$DDNSPassword&amp;ip=$CurrentIp"
-</span><span class='line'>$UpdateDDNS    = (New-Object System.Net.WebClient).DownloadString($UpdateUrl)
+</span><span class='line'><span class="c1"># Otherwise, create update URI and perform a Web request.</span>
+</span><span class='line'><span class="vg">$UpdateUrl</span>     <span class="o">=</span> <span class="s2">&quot;https://dynamicdns.park-your-domain.com/update?host=$DDNSSubdomain&amp;amp;domain=$DDNSDomain&amp;amp;password=$DDNSPassword&amp;amp;ip=$CurrentIp&quot;</span>
+</span><span class='line'><span class="vg">$UpdateDDNS</span>    <span class="o">=</span> <span class="p">(</span><span class="no">New</span><span class="o">-</span><span class="no">Object</span> <span class="no">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">WebClient</span><span class="p">)</span><span class="o">.</span><span class="n">DownloadString</span><span class="p">(</span><span class="vg">$UpdateUrl</span><span class="p">)</span>
 </span><span class='line'>
-</span><span class='line'># Error handling omitted for clarity. Or laziness.
+</span><span class='line'><span class="c1"># Error handling omitted for clarity. Or laziness.</span>
 </span><span class='line'>
-</span><span class='line'># Finally, set the environment variable to the new IP address
-</span><span class='line'>[Environment]::SetEnvironmentVariable("PUBLIC_IP", $CurrentIp, "User")</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'><span class="c1"># Finally, set the environment variable to the new IP address</span>
+</span><span class='line'><span class="o">[</span><span class="no">Environment</span><span class="o">]::</span><span class="no">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">&quot;PUBLIC_IP&quot;</span><span class="p">,</span> <span class="vg">$CurrentIp</span><span class="p">,</span> <span class="s2">&quot;User&quot;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Sending an email to notify the change</h2>
+<h3>Sending an email to notify the change</h3>
 
-<p>Next we need to report the change of IP address via email, so I can validate and/or troubleshoot in case something went wrong.</p>
+<p>Next is to report the change of IP address via email, so I can validate and/or troubleshoot in case something went wrong.</p>
 
 <p>You can choose between writing a log to a local text file, for example, and then include that file as an email attachment. In my case, since I never expect the logs to be too large, I&#8217;m just concatenating to a string in memory and then writing to the body of the message. Here&#8217;s my function for sending the email, based on <a href="http://stackoverflow.com/a/2250309/1014">this code from Christian Muggli</a>:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -317,38 +321,38 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'># Send an email with the contents of the log buffer.
-</span><span class='line'># SMTP configuration and credentials are in the configuration dictionary.
-</span><span class='line'>function Email-Log ($config, $message) {
-</span><span class='line'>    $EmailFrom        = $config["EmailFrom"]
-</span><span class='line'>    $EmailTo          = $config["EmailTo"]
-</span><span class='line'>    $EmailSubject     = "DDNS log $(get-date -format u)"  
-</span><span class='line'>      
-</span><span class='line'>    $SMTPServer       = $config["SMTPServer"]
-</span><span class='line'>    $SMTPPort         = $config["SMTPPort"]
-</span><span class='line'>    $SMTPAuthUsername = $config["SMTPAuthUsername"]
-</span><span class='line'>    $SMTPAuthPassword = $config["SMTPAuthPassword"]
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="c1"># Send an email with the contents of the log buffer.</span>
+</span><span class='line'><span class="c1"># SMTP configuration and credentials are in the configuration dictionary.</span>
+</span><span class='line'><span class="n">function</span> <span class="no">Email</span><span class="o">-</span><span class="no">Log</span> <span class="p">(</span><span class="vg">$config</span><span class="p">,</span> <span class="vg">$message</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="vg">$EmailFrom</span>        <span class="o">=</span> <span class="vg">$config</span><span class="o">[</span><span class="s2">&quot;EmailFrom&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="vg">$EmailTo</span>          <span class="o">=</span> <span class="vg">$config</span><span class="o">[</span><span class="s2">&quot;EmailTo&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="vg">$EmailSubject</span>     <span class="o">=</span> <span class="s2">&quot;DDNS log $(get-date -format u)&quot;</span>
 </span><span class='line'>
-</span><span class='line'>    $mailmessage = New-Object System.Net.Mail.MailMessage 
-</span><span class='line'>    $mailmessage.From = $EmailFrom
-</span><span class='line'>    $mailmessage.To.Add($EmailTo)
-</span><span class='line'>    $mailmessage.Subject = $EmailSubject
-</span><span class='line'>    $mailmessage.Body = $message
+</span><span class='line'>    <span class="vg">$SMTPServer</span>       <span class="o">=</span> <span class="vg">$config</span><span class="o">[</span><span class="s2">&quot;SMTPServer&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="vg">$SMTPPort</span>         <span class="o">=</span> <span class="vg">$config</span><span class="o">[</span><span class="s2">&quot;SMTPPort&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="vg">$SMTPAuthUsername</span> <span class="o">=</span> <span class="vg">$config</span><span class="o">[</span><span class="s2">&quot;SMTPAuthUsername&quot;</span><span class="o">]</span>
+</span><span class='line'>    <span class="vg">$SMTPAuthPassword</span> <span class="o">=</span> <span class="vg">$config</span><span class="o">[</span><span class="s2">&quot;SMTPAuthPassword&quot;</span><span class="o">]</span>
 </span><span class='line'>
-</span><span class='line'>    $SMTPClient = New-Object Net.Mail.SmtpClient($SmtpServer, $SMTPPort) 
-</span><span class='line'>    $SMTPClient.EnableSsl = $true 
-</span><span class='line'>    $SMTPClient.Credentials = New-Object System.Net.NetworkCredential("$SMTPAuthUsername", "$SMTPAuthPassword") 
-</span><span class='line'>    $SMTPClient.Send($mailmessage)
-</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>    <span class="vg">$mailmessage</span> <span class="o">=</span> <span class="no">New</span><span class="o">-</span><span class="no">Object</span> <span class="no">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">Mail</span><span class="o">.</span><span class="n">MailMessage</span>
+</span><span class='line'>    <span class="vg">$mailmessage</span><span class="o">.</span><span class="n">From</span> <span class="o">=</span> <span class="vg">$EmailFrom</span>
+</span><span class='line'>    <span class="vg">$mailmessage</span><span class="o">.</span><span class="n">To</span><span class="o">.</span><span class="n">Add</span><span class="p">(</span><span class="vg">$EmailTo</span><span class="p">)</span>
+</span><span class='line'>    <span class="vg">$mailmessage</span><span class="o">.</span><span class="n">Subject</span> <span class="o">=</span> <span class="vg">$EmailSubject</span>
+</span><span class='line'>    <span class="vg">$mailmessage</span><span class="o">.</span><span class="n">Body</span> <span class="o">=</span> <span class="vg">$message</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="vg">$SMTPClient</span> <span class="o">=</span> <span class="no">New</span><span class="o">-</span><span class="no">Object</span> <span class="no">Net</span><span class="o">.</span><span class="n">Mail</span><span class="o">.</span><span class="n">SmtpClient</span><span class="p">(</span><span class="vg">$SmtpServer</span><span class="p">,</span> <span class="vg">$SMTPPort</span><span class="p">)</span>
+</span><span class='line'>    <span class="vg">$SMTPClient</span><span class="o">.</span><span class="n">EnableSsl</span> <span class="o">=</span> <span class="vg">$true</span>
+</span><span class='line'>    <span class="vg">$SMTPClient</span><span class="o">.</span><span class="n">Credentials</span> <span class="o">=</span> <span class="no">New</span><span class="o">-</span><span class="no">Object</span> <span class="no">System</span><span class="o">.</span><span class="n">Net</span><span class="o">.</span><span class="n">NetworkCredential</span><span class="p">(</span><span class="s2">&quot;$SMTPAuthUsername&quot;</span><span class="p">,</span> <span class="s2">&quot;$SMTPAuthPassword&quot;</span><span class="p">)</span>
+</span><span class='line'>    <span class="vg">$SMTPClient</span><span class="o">.</span><span class="n">Send</span><span class="p">(</span><span class="vg">$mailmessage</span><span class="p">)</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><a href="https://gist.github.com/3508143">The full script can be downloaded from Github</a>.</p>
 
 <p>To run the query, open a console and execute the following line:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>powershell -command "& 'C:\path\to\script\UpdateDDNS.ps1 -c config.ini' "</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>powershell -command "&amp; 'C:\path\to\script\UpdateDDNS.ps1 -c config.ini' "
+</code></pre>
 
 <p>The final step would be to schedule the command so it runs every hour, for example. You just need to set up a task on Windows Task Scheduler for that, but since you asked, <a href="http://blogs.technet.com/b/heyscriptingguy/archive/2012/08/11/weekend-scripter-use-the-windows-task-scheduler-to-run-a-windows-powershell-script.aspx">here are some instructions to get you started</a>.</p>
 
