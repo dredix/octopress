@@ -43,7 +43,7 @@ Note, however, the following caveats:
 
 * I haven't actually tried the extension on Windows 2000.
 
-* Sorting files by the new column seems to be broken at the moment. I'll go back and fix it, hopefully before Windows XP goes out of support.
+* <s>Sorting files by the new column seems to be broken at the moment. I'll go back and fix it, hopefully before Windows XP goes out of support.</s> Sorting has been fixed.
 
 If you decided to trust a random guy on the Internet and try this extension, please do let me know how it went.
 
