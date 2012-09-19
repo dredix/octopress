@@ -30,3 +30,4 @@ Exactly 4 years ago, on 2 September 2008, Google released the first beta of thei
 
 > In a perfect world, an archetypal web browser would exist and every single website would render perfectly in that browser. We don't live in a perfect world, though, and at least in these early stages I don't see Google Chrome being the one and only browser for every user and every possible situation. I'll keep an eye on it anyway to see where it goes.
 
+Happy birthday, Google Chrome. You have done well.
