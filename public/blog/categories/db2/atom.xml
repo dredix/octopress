@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: DB2 | Wishful Coding]]></title>
-  <link href="http://wishfulcoding.com/blog/categories/db2/atom.xml" rel="self"/>
-  <link href="http://wishfulcoding.com/"/>
-  <updated>2012-11-09T01:11:55+11:00</updated>
-  <id>http://wishfulcoding.com/</id>
+  <link href="http://dredix.github.com/octopress/blog/categories/db2/atom.xml" rel="self"/>
+  <link href="http://dredix.github.com/octopress/"/>
+  <updated>2012-11-09T12:36:33+11:00</updated>
+  <id>http://dredix.github.com/octopress/</id>
   <author>
     <name><![CDATA[Leonardo]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Concatenating strings and other quirks of DB2 for i SQL]]></title>
-    <link href="http://wishfulcoding.com/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/"/>
+    <link href="http://dredix.github.com/octopress/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/"/>
     <updated>2012-11-09T00:10:00+11:00</updated>
-    <id>http://wishfulcoding.com/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql</id>
+    <id>http://dredix.github.com/octopress/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql</id>
     <content type="html"><![CDATA[<p>If you have ever used more than one database engine for any length of time you may be probably aware of the <s>not always</s> subtle syntax differences in their implementation of SQL. (Not that there's any reason for that. <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681">That's what standards are for, right?</a>).</p>
 
 <p>In this regard, DB2 for i SQL does not disappoint. Even a simple search for the official online documentation can be daunting for a newcomer (<a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/index.jsp?topic=/db2/rbafzintro.htm">it's here, by the way</a>). If you are learning to program on iSeries, you might have been grateful when you found out there was support for SQL, until you actually started using it and stumbled upon some of those little but significant annoyances that tend to slow progress down to a crawl.</p>

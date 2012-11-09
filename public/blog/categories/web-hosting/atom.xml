@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Web hosting | Wishful Coding]]></title>
-  <link href="http://wishfulcoding.com/blog/categories/web-hosting/atom.xml" rel="self"/>
-  <link href="http://wishfulcoding.com/"/>
-  <updated>2012-11-09T01:11:55+11:00</updated>
-  <id>http://wishfulcoding.com/</id>
+  <link href="http://dredix.github.com/octopress/blog/categories/web-hosting/atom.xml" rel="self"/>
+  <link href="http://dredix.github.com/octopress/"/>
+  <updated>2012-11-09T12:36:33+11:00</updated>
+  <id>http://dredix.github.com/octopress/</id>
   <author>
     <name><![CDATA[Leonardo]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dynamic DNS Updates on Namecheap Via a PowerShell Script]]></title>
-    <link href="http://wishfulcoding.com/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/"/>
+    <link href="http://dredix.github.com/octopress/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/"/>
     <updated>2012-09-10T23:38:00+10:00</updated>
-    <id>http://wishfulcoding.com/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script</id>
+    <id>http://dredix.github.com/octopress/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script</id>
     <content type="html"><![CDATA[<p>Last year I decided to transfer my domains from GoDaddy to <a href="http://www.namecheap.com/">Namecheap</a>, for <a href="http://geekfeminism.wikia.com/wiki/Go_Daddy's_advertising">no</a> <a href="http://www.huffingtonpost.com/2011/03/31/bob-parsons-godaddy-ceo-elephant-hunt_n_843121.html">particular</a> <a href="http://arstechnica.com/tech-policy/2011/12/godaddy-faces-december-29-boycott-over-sopa-support/">reason</a>. With the new registrar I wanted to try some things I never got around to do before, including setting up a subdomain for easy remote access to a location I shall henceforth refer to as Home.</p>
 
 <p>Since Home lacks a static IP I had to enable dynamic DNS for the domain, which basically allows changing the IP address associated to a given subdomain programmatically and with immediate effect. Fortunately there is <a href="http://www.namecheap.com/support/knowledgebase/category.aspx/11/dynamic-dns">plenty of information</a> on <a href="http://www.namecheap.com/support/knowledgebase/article.aspx/36/11/what-should-i-do-in-order-to-start-using-dynamic-dns">what needs to be done</a>.</p>
