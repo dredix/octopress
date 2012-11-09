@@ -1,114 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
 
-<!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <title>Wishful Coding</title>
-  <meta name="author" content="Leonardo">
-
-  
-  <meta name="description" content="If you have ever used more than one database engine for any length of time you may be probably aware of the not always subtle syntax differences in &hellip;">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  
-  <link rel="canonical" href="http://dredix.github.com/octopress/">
-  <link href="/favicon.png" rel="icon">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="Wishful Coding" type="application/atom+xml">
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-34303814-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
-</head>
-
-<body   >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Wishful Coding</a></h1>
-  
-    <h2>Shake well before using. May cause drowsiness or dizziness.</h2>
-  
-</hgroup>
-
-</header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="q" value="site:dredix.github.com/octopress" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/about/">About</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-</ul>
-
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+  <title><![CDATA[Wishful Coding]]></title>
+  <link href="http://dredix.github.com/octopress/atom.xml" rel="self"/>
+  <link href="http://dredix.github.com/octopress/"/>
+  <updated>2012-11-09T13:18:01+11:00</updated>
+  <id>http://dredix.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[Leonardo]]></name>
     
-      <h1 class="entry-title"><a href="/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/">Concatenating Strings and Other Quirks of DB2 for I SQL</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
-
-
-<time datetime="2012-11-09T00:10:00+11:00" pubdate data-updated="true">Nov 9<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>If you have ever used more than one database engine for any length of time you may be probably aware of the <s>not always</s> subtle syntax differences in their implementation of SQL. (Not that there&#8217;s any reason for that. <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681">That&#8217;s what standards are for, right?</a>).</p>
+  <entry>
+    <title type="html"><![CDATA[Concatenating strings and other quirks of DB2 for i SQL]]></title>
+    <link href="http://dredix.github.com/octopress/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/"/>
+    <updated>2012-11-09T00:10:00+11:00</updated>
+    <id>http://dredix.github.com/octopress/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql</id>
+    <content type="html"><![CDATA[<p>If you have ever used more than one database engine for any length of time you may be probably aware of the <s>not always</s> subtle syntax differences in their implementation of SQL. (Not that there&#8217;s any reason for that. <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681">That&#8217;s what standards are for, right?</a>).</p>
 
 <p>In this regard, DB2 for i SQL does not disappoint. Even a simple search for the official online documentation can be daunting for a newcomer (<a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/index.jsp?topic=/db2/rbafzintro.htm">it&#8217;s here, by the way</a>). If you are learning to program on iSeries, you might have been grateful when you found out there was support for SQL, until you actually started using it and stumbled upon some of those little but significant annoyances that tend to slow progress down to a crawl.</p>
 
@@ -178,44 +88,15 @@
 <p>So there you have it. I like to think that just by having stopped to write this post I probably committed those snippets to memory, but the reality is that I will probably not remember anything the next time I need help.</p>
 
 <p>Finally if you are reading this, hi future me. Don&#8217;t forget to leave a comment for future future me.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/">Dynamic DNS Updates on Namecheap via a PowerShell Script</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-10T23:38:00+10:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
-        
-         | <a href="/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Last year I decided to transfer my domains from GoDaddy to <a href="http://www.namecheap.com/">Namecheap</a>, for <a href="http://geekfeminism.wikia.com/wiki/Go_Daddy's_advertising">no</a> <a href="http://www.huffingtonpost.com/2011/03/31/bob-parsons-godaddy-ceo-elephant-hunt_n_843121.html">particular</a> <a href="http://arstechnica.com/tech-policy/2011/12/godaddy-faces-december-29-boycott-over-sopa-support/">reason</a>. With the new registrar I wanted to try some things I never got around to do before, including setting up a subdomain for easy remote access to a location I shall henceforth refer to as Home.</p>
+  <entry>
+    <title type="html"><![CDATA[Dynamic DNS Updates on Namecheap Via a PowerShell Script]]></title>
+    <link href="http://dredix.github.com/octopress/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/"/>
+    <updated>2012-09-10T23:38:00+10:00</updated>
+    <id>http://dredix.github.com/octopress/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script</id>
+    <content type="html"><![CDATA[<p>Last year I decided to transfer my domains from GoDaddy to <a href="http://www.namecheap.com/">Namecheap</a>, for <a href="http://geekfeminism.wikia.com/wiki/Go_Daddy's_advertising">no</a> <a href="http://www.huffingtonpost.com/2011/03/31/bob-parsons-godaddy-ceo-elephant-hunt_n_843121.html">particular</a> <a href="http://arstechnica.com/tech-policy/2011/12/godaddy-faces-december-29-boycott-over-sopa-support/">reason</a>. With the new registrar I wanted to try some things I never got around to do before, including setting up a subdomain for easy remote access to a location I shall henceforth refer to as Home.</p>
 
 <p>Since Home lacks a static IP I had to enable dynamic DNS for the domain, which basically allows changing the IP address associated to a given subdomain programmatically and with immediate effect. Fortunately there is <a href="http://www.namecheap.com/support/knowledgebase/category.aspx/11/dynamic-dns">plenty of information</a> on <a href="http://www.namecheap.com/support/knowledgebase/article.aspx/36/11/what-should-i-do-in-order-to-start-using-dynamic-dns">what needs to be done</a>.</p>
 
@@ -465,44 +346,15 @@
 <p>The final step would be to schedule the command so it runs every hour, for example. You just need to set up a task on Windows Task Scheduler for that, but since you asked, <a href="http://blogs.technet.com/b/heyscriptingguy/archive/2012/08/11/weekend-scripter-use-the-windows-task-scheduler-to-run-a-windows-powershell-script.aspx">here are some instructions to get you started</a>.</p>
 
 <p>So that&#8217;s it: A quick, cheap and easy way to keep your Namecheap domains with Dynamic DNS up to date. Now that we&#8217;re done, let&#8217;s return to bashing Bob Parsons on Twitter, shall we?</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/02/google-chrome-first-impressions-4-years-later/">Google Chrome: First Impressions (4 Years Later)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-02T23:25:00+10:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/09/02/google-chrome-first-impressions-4-years-later/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Exactly 4 years ago, on 2 September 2008, Google released the first beta of their web browser: <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>. I remember how difficult it was to download it that same day, with Google&#8217;s servers probably brought to their knees, and then how I stopped at pretty much everyone&#8217;s desk to <s>procrastinate</s> exchange impressions. I decided to keep it around for a while to see where it would go. Eventually I stopped using all the other browsers on a daily basis, and today it is the first software I install on any new computer (with the obvious exception of the operating system itself). This is what I thought back then:</p>
+  <entry>
+    <title type="html"><![CDATA[Google Chrome: First Impressions (4 years later)]]></title>
+    <link href="http://dredix.github.com/octopress/blog/2012/09/02/google-chrome-first-impressions-4-years-later/"/>
+    <updated>2012-09-02T23:25:00+10:00</updated>
+    <id>http://dredix.github.com/octopress/blog/2012/09/02/google-chrome-first-impressions-4-years-later</id>
+    <content type="html"><![CDATA[<p>Exactly 4 years ago, on 2 September 2008, Google released the first beta of their web browser: <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>. I remember how difficult it was to download it that same day, with Google&#8217;s servers probably brought to their knees, and then how I stopped at pretty much everyone&#8217;s desk to <s>procrastinate</s> exchange impressions. I decided to keep it around for a while to see where it would go. Eventually I stopped using all the other browsers on a daily basis, and today it is the first software I install on any new computer (with the obvious exception of the operating system itself). This is what I thought back then:</p>
 
 <blockquote><p>Just downloaded Chrome, a new browser by Google, and their latest step towards absolute Internet domination.</p>
 
@@ -527,44 +379,15 @@
 <p>In a perfect world, an archetypal web browser would exist and every single website would render perfectly in that browser. We don&#8217;t live in a perfect world, though, and at least in these early stages I don&#8217;t see Google Chrome being the one and only browser for every user and every possible situation. I&#8217;ll keep an eye on it anyway to see where it goes.</p></blockquote>
 
 <p>Happy birthday, Google Chrome. You have done well.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/22/on-wishful-thinking/">On Wishful Thinking</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-22T11:21:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/08/22/on-wishful-thinking/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I love <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen&#8217;s blog</a>, especially when he goes thermonuclear on his customers (or readers) for asking stupid questions or trying to go off topic or, you know, just plain trolling.</p>
+  <entry>
+    <title type="html"><![CDATA[On Wishful Thinking]]></title>
+    <link href="http://dredix.github.com/octopress/blog/2012/08/22/on-wishful-thinking/"/>
+    <updated>2012-08-22T11:21:00+10:00</updated>
+    <id>http://dredix.github.com/octopress/blog/2012/08/22/on-wishful-thinking</id>
+    <content type="html"><![CDATA[<p>I love <a href="http://blogs.msdn.com/b/oldnewthing/">Raymond Chen&#8217;s blog</a>, especially when he goes thermonuclear on his customers (or readers) for asking stupid questions or trying to go off topic or, you know, just plain trolling.</p>
 
 <p>Something I find funny about the highly technical posts on his blog is that Mr Chen usually supplements his explanations with witty remarks like &#8220;the customer managed to screw it despite this being clearly documented here and here and there.&#8221; Well of course he is being polite, since it should surprise no one the fact that most people just do not care about documentation or doing things the right way in general.</p>
 
@@ -593,44 +416,15 @@
 <p>Of course, it&#8217;s also possible that future programmers will despise our feeble attempts at improving the Status Quo, decide that our tools are too narrow and restrictive, and end up exploiting all kinds of quirks to work around the platform limitations. And we&#8217;ll be back at the starting line.</p>
 
 <p>Nobody knows. And since we suck at predicting the future, maybe <a href="http://neo.jpl.nasa.gov/risk/">it doesn&#8217;t even matter</a>. We&#8217;ll see.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding File Size in Bytes to Explorer&#8217;s Details View on Windows 2000 and XP</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-08-22T01:19:00+10:00" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
-        
-         | <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the <a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/FileProperties.png">properties dialog box</a>. You would think the Details view is a great place for that, considering the remarkable selection of columns you can include. Seriously, there is a <em>Mood</em> column but no <em>Size in bytes</em> or equivalent?</p>
+  <entry>
+    <title type="html"><![CDATA[Adding file size in bytes to Explorer's Details View on Windows 2000 and XP]]></title>
+    <link href="http://dredix.github.com/octopress/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/"/>
+    <updated>2012-08-22T01:19:00+10:00</updated>
+    <id>http://dredix.github.com/octopress/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp</id>
+    <content type="html"><![CDATA[<p>Mi biggest pet peeve on Windows Explorer is that there is no way to show the size of a file in bytes without having to open the <a href="https://raw.github.com/dredix/FileSizeXP/master/doc/images/FileProperties.png">properties dialog box</a>. You would think the Details view is a great place for that, considering the remarkable selection of columns you can include. Seriously, there is a <em>Mood</em> column but no <em>Size in bytes</em> or equivalent?</p>
 
 <p>On Windows XP and previous versions, you could write a <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/cc144067.aspx">shell extension</a> that implemented the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/bb776147.aspx">IColumnProvider</a> interface and add custom columns as needed. <a href="http://tortoisesvn.net/docs/release/TortoiseSVN_en/tsvn-dug-wcstatus.html#id663427">TortoiseSVN</a> used these kind of extensions, for example, to show the status of files under source control directly on Windows Explorer.</p>
 
@@ -671,152 +465,7 @@
 
 
 <p>If you decided to trust a random guy on the Internet and try this extension, please do let me know how it went.</p>
-</div>
+]]></content>
+  </entry>
   
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
-  
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/">Concatenating strings and other quirks of DB2 for i SQL</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/10/dynamic-dns-updates-on-namecheap-via-a-powershell-script/">Dynamic DNS Updates on Namecheap Via a PowerShell Script</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/02/google-chrome-first-impressions-4-years-later/">Google Chrome: First Impressions (4 years later)</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/22/on-wishful-thinking/">On Wishful Thinking</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/22/adding-file-size-in-bytes-to-explorer-dot-s-details-view-on-windows-2000-and-xp/">Adding file size in bytes to Explorer&#8217;s Details View on Windows 2000 and XP</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  
-  <a href="https://github.com/dredix">@dredix</a> on GitHub
-  
-  <script type="text/javascript">
-      $(document).ready(function(){
-        github.showRepos({
-            user: 'dredix',
-            count: 4,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("archaetypo", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/archaetypo" class="twitter-follow-button" data-show-count="false">Follow @archaetypo</a>
-  
-</section>
-
-
-
-
-
-  
-</aside>
-
-    </div>
-  </div>
-  <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Leonardo -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
-</p>
-
-</footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'wishfulcoding';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
-</html>
+</feed>

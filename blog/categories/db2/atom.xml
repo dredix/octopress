@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: DB2 | Wishful Coding]]></title>
+  <link href="http://dredix.github.com/octopress/blog/categories/db2/atom.xml" rel="self"/>
+  <link href="http://dredix.github.com/octopress/"/>
+  <updated>2012-11-09T13:18:01+11:00</updated>
+  <id>http://dredix.github.com/octopress/</id>
+  <author>
+    <name><![CDATA[Leonardo]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Concatenating strings and other quirks of DB2 for i SQL]]></title>
+    <link href="http://dredix.github.com/octopress/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql/"/>
+    <updated>2012-11-09T00:10:00+11:00</updated>
+    <id>http://dredix.github.com/octopress/blog/2012/11/09/concatenating-strings-and-other-quirks-of-db2-for-i-sql</id>
+    <content type="html"><![CDATA[<p>If you have ever used more than one database engine for any length of time you may be probably aware of the <s>not always</s> subtle syntax differences in their implementation of SQL. (Not that there's any reason for that. <a href="http://www.iso.org/iso/iso_catalogue/catalogue_tc/catalogue_detail.htm?csnumber=53681">That's what standards are for, right?</a>).</p>
+
+<p>In this regard, DB2 for i SQL does not disappoint. Even a simple search for the official online documentation can be daunting for a newcomer (<a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/index.jsp?topic=/db2/rbafzintro.htm">it's here, by the way</a>). If you are learning to program on iSeries, you might have been grateful when you found out there was support for SQL, until you actually started using it and stumbled upon some of those little but significant annoyances that tend to slow progress down to a crawl.</p>
+
+<p>The good news is that most of what you already know from a different DB engine will work here. For the rest, I started compiling a simple list to get you through some of the most common, repetitive and especially non-obvious tasks. I plan to go back and continue expanding this list as I keep learning how to effectively use the query language on this platform (I may never come back, so <a href="http://i2.kym-cdn.com/photos/images/original/000/159/324/flash11752_Still-Waiting-on-OP.jpg">don't just sit around waiting.</a>)</p>
+
+<h3>Concatenate strings</h3>
+
+<p>This one is deceptively simple, but there's a twist (so soon?). You can use the <a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/index.jsp?topic=/db2/rbafzscaconcat.htm"><code>CONCAT</code> function</a> or the <a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/index.jsp?topic=/db2/rbafzscaconcat.htm">concatenation operator</a>, with different syntax (but ultimately yielding the same result) depending on the chosen form. Here are the three valid ways of concatenating strings:</p>
+
+<p>Using the <code>CONCAT</code> function:</p>
+
+<pre><code>SELECT CONCAT(CONCAT(FIRSTNAME, ' '), LASTNAME) AS FULLNAME FROM STUDENTS
+</code></pre>
+
+<p>Using the long form of the operator:</p>
+
+<pre><code>SELECT FIRSTNAME CONCAT ' ' CONCAT LASTNAME AS FULLNAME FROM STUDENTS
+</code></pre>
+
+<p>Using the short form of the concatenation operator:</p>
+
+<pre><code>SELECT FIRSTNAME || ' ' || LASTNAME AS FULLNAME FROM STUDENTS
+</code></pre>
+
+<p>Yes, <code>CONCAT</code> is a function AND an operator. It may look weird, but it works. I tend to prefer the compact syntax, as long as I'm not <a href="http://www.acm.uiuc.edu/webmonkeys/book/c_guide/1.5.html">writing C code</a> at the same time.</p>
+
+<h3>Create a table with the same data structure as an existing table or view</h3>
+
+<p>I wouldn't be surprised if the group of <a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/topic/db2/rbafzhctabl.htm">CREATE</a> statements were the most complex on SQL for i, so it would be understandable if, during your perusal of the official reference, you missed the syntax for copying the column definitions from an existing table or view to a new table. So here it is:</p>
+
+<pre><code>CREATE TABLE MYLIB/STUDENTS_ARCHIVE LIKE PRDDTA/STUDENTS 
+</code></pre>
+
+<p>Simple, easy to remember. And yet I forget about it all the time (hence its inclusion on this list).</p>
+
+<h3>Retrieve top N records</h3>
+
+<p>Retrieving the first N records of a query seems to be the quintessential I-don't-care-how-you-did-it-I'll-do-it-on-my-own-way query amongst DB engines. In SQL Server, for example, you have the <a href="http://technet.microsoft.com/en-us/library/ms189463.aspx"><code>TOP</code> clause</a>:</p>
+
+<pre><code>SELECT TOP 100 * FROM STUDENTS
+</code></pre>
+
+<p>In Oracle you are supposed to use the <a href="http://docs.oracle.com/cd/B19306_01/server.102/b14200/pseudocolumns009.htm"><code>ROWNUM</code> pseudocolumn</a> (as long as you don't need ordered results, in which case a nested query is necessary):</p>
+
+<pre><code>SELECT * FROM STUDENTS WHERE ROWNUM &lt; 100;
+</code></pre>
+
+<p>DB2 FOR i SQL gets the prize for the most verbose syntax:</p>
+
+<pre><code>SELECT * FROM STUDENTS FETCH FIRST 100 ROW ONLY 
+</code></pre>
+
+<p>And so on and so forth. You get the point.</p>
+
+<h3>Delete duplicate records</h3>
+
+<p>I spent a lot of time on this problem, until I remembered it's 2012 and these days you can Google your way out of any difficult situation. The issue was simple enough: A badly written program inserted duplicate records on a table lacking a unique identifier, and we needed to remove those duplicates via SQL. The solution was kindly provided by Vijayakumar Kannan on his appropriately titled <a href="http://search400.techtarget.com/tip/Delete-duplicate-records-using-SQL-in-iSeries-400">'Delete duplicate records using SQL in iSeries 400'</a> post:</p>
+
+<pre><code>DELETE FROM STUDENTS A WHERE RRN(A) &gt; 
+    (SELECT MIN(RRN(B)) FROM STUDENTS B WHERE
+     A.FIRSTNAME = B.FIRSTNAME AND A.LASTNAME = B.LASTNAME AND
+     A.DAYOFBIRTH = B.DAYOFBIRTH AND ...)
+</code></pre>
+
+<p>where <a href="http://publib.boulder.ibm.com/infocenter/iseries/v6r1m0/topic/db2/rbafzscarrn.htm"><code>RRN</code></a> is a function that "returns the relative record number of a row".</p>
+
+<p>So there you have it. I like to think that just by having stopped to write this post I probably committed those snippets to memory, but the reality is that I will probably not remember anything the next time I need help.</p>
+
+<p>Finally if you are reading this, hi future me. Don't forget to leave a comment for future future me.</p>
+]]></content>
+  </entry>
+  
+</feed>
